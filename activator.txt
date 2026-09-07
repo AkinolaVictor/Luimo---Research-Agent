@@ -1,0 +1,28 @@
+This project is a research agent with 3 pages,
+
+1. Home page
+2. Clarification page
+3. Plan Page
+4. Result Page
+
+Read the /prompts/home.txt file to build the home page
+Read the /prompts/clarification.txt file to build the clarification page
+Read the /prompts/plan.txt file to build the plan page
+Read the /prompts/result.txt file to build the result page
+
+Prioritize consistency in your design
+if you notice inconsistency in the design prompts above, choose the best one and stay consistent with it
+
+
+use flexbox mostly to achieve the design.
+
+don't write any backend code yet, only do frontend now.
+if there's anything you dont understand, ask questions
+
+Now that you understand the codebase and you know what to build,
+done start a new codebase, use the existing one and finetune it to fit this purpose, create any file or folder necessary to get the work done
+let's start building. 
+Before you write any code, show me your plan.
+
+
+

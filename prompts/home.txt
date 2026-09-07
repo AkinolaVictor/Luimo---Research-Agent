@@ -1,0 +1,260 @@
+Here is a comprehensive prompt to build the home page:
+---
+
+**COMPREHENSIVE DESIGN-TO-CODE CONVERSION PROMPT**
+
+**Project Overview:**
+Convert the "Luimo Deep Researcher" UI mockup into a fully functional, responsive React component. This is a research interface with a minimalist dark theme. The component should be production-ready with proper accessibility, error handling, and user feedback.
+
+---
+
+**VISUAL DESIGN SPECIFICATIONS:**
+
+**Color Palette:**
+- Primary Background: Deep black (#0f0f0f or #1a1a1a)
+- Secondary Background (for input/button): Medium gray (#4a4a4a or #555555)
+- Text Primary: White (#ffffff)
+- Text Secondary: Light gray (#d0d0d0)
+- Accent/Hover States: Light gray (#6a6a6a)
+- Border Color (if needed): Subtle gray (#333333)
+
+**Typography:**
+- "Luimo" Logo:
+  - Font: Clean sans-serif (Inter, Segoe UI, or system default)
+  - Size: 24-28px
+  - Weight: 600-700 (semibold to bold)
+  - Color: White
+  - Positioning: Top-left corner with 20-30px padding from edges
+
+- "Deep Researcher" Heading:
+  - Font: Same sans-serif as logo
+  - Size: 24-28px
+  - Weight: 400-500 (regular to medium)
+  - Color: White
+  - Alignment: Center
+  - Margin Bottom: 30-40px
+
+- Input Placeholder Text:
+  - Text: "What's on your mind?"
+  - Font: Same sans-serif
+  - Size: 14-16px
+  - Weight: 400 (regular)
+  - Color: Light gray (#b0b0b0)
+  - Opacity: 60-70% if using white with opacity
+
+- Button Text:
+  - Text: "Start Research"
+  - Font: Same sans-serif
+  - Size: 14-16px
+  - Weight: 500-600 (medium to semibold)
+  - Color: White
+  - Letter Spacing: Normal (0px)
+
+---
+
+**SPACING & LAYOUT:**
+
+**Container/Page Layout:**
+- Full viewport height (100vh minimum)
+- Horizontal padding: 20px on mobile, 40px on tablet, 60px on desktop
+- Vertical centering: Content group should be vertically centered on screen
+- Max-width for content: 500px (keep the form compact)
+
+**Component Spacing:**
+- Logo top margin: 30-40px
+- Space between "Deep Researcher" and input field: 50-60px
+- Space between input field and button: 15-20px
+- Input field width: 100% of container or max 400px
+- Button width: Same as input field (100% match)
+
+**Internal Padding:**
+- Input field: 16-20px horizontal, 12-16px vertical
+- Button: 12-16px vertical, 20-24px horizontal (or match input height for consistency)
+
+**Border Radius:**
+- Input field: 8-12px
+- Button: 8-12px (should match input field radius)
+
+---
+
+**COMPONENT DETAILS:**
+
+**Input Field:**
+- Type: `<textarea>` or `<input type="text">` (choose based on whether multi-line is needed)
+- Placeholder: "What's on your mind?"
+- Height: If textarea, 80-120px; if input, match button height
+- Background: #4a4a4a or #555555
+- Border: 1px solid #666666 or none (subtle, optional)
+- Border Radius: 10px
+- Box Shadow: Optional subtle inset shadow for depth
+- Focus State:
+  - Border/outline: Slightly lighter gray (#7a7a7a)
+  - Background: Slightly lighter (#5a5a5a)
+  - Transition: 200ms ease
+  - Outline: None (custom styling instead of default)
+- Padding: 16px
+- Font Color: White
+- Font Size: 14-16px
+- Line Height: 1.5
+
+**Button (Start Research):**
+- Type: `<button>` or clickable element
+- Text: "Start Research"
+- Background: #4a4a4a or #555555 (same as input)
+- Border: None
+- Border Radius: 10px
+- Padding: 14-16px vertical, 24px horizontal
+- Width: Match input field width (100%)
+- Font Size: 14-16px
+- Font Weight: 600
+- Color: White
+- Cursor: pointer
+- Hover State:
+  - Background: #6a6a6a (lighter gray)
+  - Transition: 200ms ease
+  - Shadow: Optional subtle box-shadow for lift effect
+- Active/Click State:
+  - Background: #5a5a5a (slightly darker)
+  - Transform: scale(0.98) or translateY(1px)
+- Disabled State:
+  - Background: #3a3a3a (darker gray)
+  - Opacity: 0.5
+  - Cursor: not-allowed
+  - No hover effect
+
+**Logo:**
+- Position: Absolute or fixed in top-left
+- No background needed
+- Should not be clickable (or add link functionality if needed)
+
+---
+
+**LAYOUT STRUCTURE:**
+
+**Desktop (1024px+):**
+- Vertically centered form in middle of screen
+- Max-width: 500px
+- Horizontal centering with flexbox/grid
+
+**Tablet (768px - 1023px):**
+- Same centering approach
+- Slightly reduced padding
+- Form maintains max-width of 450px
+
+**Mobile (320px - 767px):**
+- Full-width form with 20px side padding
+- Content takes up 90% of screen width
+- Ensure text is readable (minimum 16px font size for inputs)
+- Maintain touch-friendly button sizes (minimum 44x44px)
+
+---
+
+**INTERACTIVE BEHAVIOR:**
+
+**User Input:**
+- Input field should capture text in real-time
+- Store input value in React state using `useState`
+- Allow typing and deletion without restrictions
+- Support for multi-line text (if textarea) with line breaks
+
+**Button Interaction:**
+- On click: 
+  - Validate that input is not empty (trim whitespace)
+  - Show loading state (optional: "Researching...", spinner icon)
+  - Submit data/call API
+  - Disable button during submission
+  - Clear input field after successful submission (optional)
+- Error handling: Display error message if submission fails
+- Success feedback: Optional toast notification or visual confirmation
+
+**Keyboard Support:**
+- Tab key should navigate through input and button
+- Enter key in input field: Should trigger search (optional enhancement)
+- Shift+Enter in textarea: New line (if textarea is used)
+
+---
+
+**RESPONSIVE BEHAVIOR:**
+
+**All Breakpoints:**
+- Text should remain readable
+- Touch targets (buttons) minimum 44x44px
+- No horizontal scrolling
+- Images/graphics scale appropriately
+
+**Mobile-Specific:**
+- Avoid very small text (<14px)
+- Increase button padding for easier tapping
+- Consider full-width input/button on very small screens
+- Reduce top padding for logo to save vertical space
+
+---
+
+**ACCESSIBILITY REQUIREMENTS:**
+
+- Input field should have proper `aria-label` or associated `<label>` element
+- Button should have descriptive text (not just an icon)
+- Color contrast ratio must meet WCAG AA standards (4.5:1 for text)
+- Focus states should be visible (border, outline, or highlight)
+- Keyboard navigation should work smoothly
+- Use semantic HTML (`<button>`, `<input>`, `<textarea>`)
+- Add alt text if logo is an image
+- Form should be accessible via screen readers
+
+---
+
+**TECHNICAL REQUIREMENTS:**
+
+**Framework:**
+- Next (hooks-based, modern approach)
+- Tailwind CSS OR CSS Modules OR styled-components for styling
+- No external component libraries required (build from scratch)
+
+**State Management:**
+- Use `useState` for input value
+- Use `useState` for loading/error states
+- Optional: `useRef` for input focus control
+
+**Code Structure:**
+- Single component or split into sub-components
+- Proper prop typing (PropTypes or TypeScript recommended)
+- Comments for clarity
+- Clean, readable code following React best practices
+
+**Performance:**
+- Optimize re-renders (useCallback for handlers if needed)
+- Debounce input if connected to live search (optional)
+- Lazy load if part of larger app
+
+**Browser Support:**
+- Modern browsers (Chrome, Firefox, Safari, Edge latest versions)
+- Mobile browsers (iOS Safari, Chrome Mobile)
+
+---
+
+**OPTIONAL ENHANCEMENTS:**
+
+1. **Loading Spinner:** Animated spinner in button during submission
+2. **Error Messages:** Display validation/error feedback below input
+3. **Success Animation:** Subtle animation or toast on successful submission
+4. **Icon Support:** Add search/magnifying glass icon in button or input
+5. **Character Counter:** Show character count as user types (optional)
+6. **Auto-focus:** Focus input field on page load
+7. **Animations:** Fade-in animation for page load
+8. **Dark Mode Toggle:** If needed for future expansion
+9. **API Integration:** Connect button to backend API (/api/question)
+10. **Keyboard Shortcuts:** Cmd+Enter or Ctrl+Enter to submit
+
+---
+
+**DELIVERABLES:**
+
+- Fully functional React component
+- Mobile-responsive design
+- Clean, commented code
+- No console errors or warnings
+- Proper error handling
+- Smooth transitions and interactions
+- Production-ready code quality
+
+---

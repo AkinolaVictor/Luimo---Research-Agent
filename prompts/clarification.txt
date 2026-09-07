@@ -1,0 +1,505 @@
+Here is a comprehensive prompt to build the clarification page:
+
+---
+
+**COMPREHENSIVE DESIGN-TO-CODE CONVERSION PROMPT: LUIMO RESEARCH FORM**
+
+**Project Overview:**
+Convert the "Luimo Research Form" UI mockup into a fully functional, responsive React component. This is a multi-step research questionnaire interface featuring a main question, multiple clarification follow-ups with radio button selections, and form validation. The component should be production-ready with proper state management, accessibility, and user interaction patterns.
+
+---
+
+**VISUAL DESIGN SPECIFICATIONS:**
+
+**Color Palette:**
+- Primary Background: Deep black (#0f0f0f or #1a1a1a)
+- Card/Box Background: Medium gray (#4a4a4a or #555555)
+- Text Primary: White (#ffffff)
+- Text Secondary: Light gray (#d0d0d0)
+- Text Tertiary: Very light gray (#b0b0b0) for secondary information
+- Radio Button Indicator: White or accent color (#ffffff)
+- Button Background: Medium gray (#4a4a4a or #555555)
+- Button Hover: Lighter gray (#6a6a6a)
+- Border Color: Subtle gray (#333333 or #3a3a3a)
+
+**Typography:**
+
+**Logo Section:**
+- "Luimo" Text:
+  - Font: Clean sans-serif (Inter, Segoe UI, or system default)
+  - Size: 24-28px
+  - Weight: 600-700 (semibold to bold)
+  - Color: White
+  - Position: Top-left with 30-40px padding from edges
+
+**Main Question Section:**
+- Section Label "Question":
+  - Font: Same sans-serif
+  - Size: 14-16px
+  - Weight: 600 (semibold)
+  - Color: White
+  - Margin Bottom: 12-16px
+
+- Question Text:
+  - Font: Same sans-serif
+  - Size: 13-15px
+  - Weight: 400 (regular)
+  - Color: Light gray (#d0d0d0)
+  - Line Height: 1.6
+  - Margin Bottom: 24-32px
+  - Max-width: 500px
+
+**Clarifications Section:**
+- Section Label "Clarifications":
+  - Font: Same sans-serif
+  - Size: 14-16px
+  - Weight: 600 (semibold)
+  - Color: White
+  - Margin Bottom: 16-20px
+  - Margin Top: 30-40px (above clarifications group)
+
+**Clarification Cards:**
+- Clarification Text (inside box):
+  - Font: Same sans-serif
+  - Size: 13-14px
+  - Weight: 400 (regular)
+  - Color: Light gray (#d0d0d0)
+  - Line Height: 1.5
+  - Margin Bottom: 12-16px
+
+- Radio Button Label Text:
+  - Font: Same sans-serif
+  - Size: 13-14px
+  - Weight: 400 (regular)
+  - Color: Light gray (#d0d0d0)
+  - Margin Left: 8-12px (after radio button)
+
+**Continue Button:**
+- Text: "Continue"
+- Font: Same sans-serif
+- Size: 14-16px
+- Weight: 600 (semibold)
+- Color: White
+- Letter Spacing: Normal (0px)
+
+---
+
+**SPACING & LAYOUT:**
+
+**Overall Container:**
+- Full viewport height (100vh minimum)
+- Horizontal padding: 20px on mobile, 40px on tablet, 60-80px on desktop
+- Vertical padding: 30-40px top, 40-60px bottom
+- Max-width: 600px (centered form)
+
+**Section Spacing:**
+- Logo top margin: 30-40px
+- Space after "Question" header to question text: 12-16px
+- Space after question text to "Clarifications" header: 30-40px
+- Space between clarification cards: 16-20px
+- Space between last clarification card and "Continue" button: 30-40px
+
+**Card/Box Spacing:**
+- Clarification card padding: 20-24px horizontal, 16-20px vertical
+- Card border radius: 10-12px
+- Card background: #4a4a4a or #555555
+- Card border: 1px solid #3a3a3a (subtle, optional)
+- Box shadow: Optional subtle shadow for depth
+
+**Radio Button Spacing:**
+- Vertical spacing between radio options: 10-14px
+- Space between radio button and label text: 8-12px
+- Radio button size: 18-20px diameter
+- Margin left for radio group: 0px (naturally aligned)
+
+**Button Spacing:**
+- Button width: 100% of container or max 500px
+- Button padding: 14-18px vertical, 24-32px horizontal
+- Button margin top: 30-40px
+
+---
+
+**COMPONENT DETAILS:**
+
+**Question Section:**
+- Layout: Static text display (not editable)
+- Question appears as semi-bold label followed by descriptive text
+- Purpose: Provides context for clarification questions
+- Background: Transparent (no box)
+- Styling: Simpler than clarification cards
+
+**Clarification Card (Radio Button Group):**
+- Count: Multiple cards (2+ shown in design, could be dynamic)
+- Each card contains:
+  - Clarification statement (descriptive text)
+  - Three radio button options below statement
+  - Options are mutually exclusive (select only one per card)
+  
+**Radio Button:**
+- Type: HTML `<input type="radio">` or custom radio component
+- Appearance:
+  - Unfilled: Hollow circle, 18-20px diameter, border #ffffff or #b0b0b0
+  - Filled/Selected: Solid circle with white center dot/fill
+  - Smooth transition on selection (200ms ease)
+- States:
+  - Default: Unfilled, border 2px
+  - Hover: Slightly lighter border or subtle background highlight
+  - Selected: Filled with white, border white
+  - Focus: Visible focus outline (2px white or accent color)
+  - Disabled: Grayed out, opacity 0.5
+- Accessibility: Should have proper `<label>` association
+
+**Radio Options (Standard Set):**
+1. "Yes, I can try"
+2. "Not now, just keep it in mind"
+3. "Complete No"
+
+Each option should have:
+- Consistent spacing
+- Readable text size
+- Proper contrast ratio
+- Clickable label area (label + radio button)
+
+**Continue Button:**
+- Type: `<button>` element
+- Appearance:
+  - Background: #4a4a4a or #555555
+  - Border: None
+  - Border Radius: 10-12px
+  - Width: 100% of container
+  - Padding: 16px vertical, 24px horizontal
+- States:
+  - Default: Background #4a4a4a, white text, cursor pointer
+  - Hover: Background #6a6a6a (lighter), smooth transition 200ms
+  - Active/Click: Background #5a5a5a, subtle scale(0.98) transform
+  - Disabled: 
+    - Background #3a3a3a (darker)
+    - Opacity 0.5
+    - Cursor not-allowed
+    - No hover effect
+- Focus: Visible focus outline (2px white border)
+- Text: Centered, white, bold weight
+
+**Logo (Top-Left):**
+- Position: Absolute or fixed
+- Size: 24-28px
+- No background
+- Should remain visible when scrolling (optional: make sticky)
+
+---
+
+**FORM STRUCTURE & STATE:**
+
+**Form Data Model:**
+```
+{
+  mainQuestion: {
+    id: "q1",
+    text: "Since you're already comfortable with Next.js...",
+    isRequired: true
+  },
+  clarifications: [
+    {
+      id: "c1",
+      text: "Since you're already comfortable with Next.js...",
+      selectedOption: null, // or "option1", "option2", "option3"
+      options: [
+        { id: "opt1", label: "Yes, I can try" },
+        { id: "opt2", label: "Not now, just keep it in mind" },
+        { id: "opt3", label: "Complete No" }
+      ],
+      isRequired: true
+    },
+    {
+      id: "c2",
+      text: "Since you're already comfortable with Next.js...",
+      selectedOption: null,
+      options: [
+        { id: "opt1", label: "Yes, I can try" },
+        { id: "opt2", label: "Not now, just keep it in mind" },
+        { id: "opt3", label: "Complete No" }
+      ],
+      isRequired: true
+    }
+  ]
+}
+```
+
+**State Management:**
+- Use `useState` for form data
+- Track selected radio option per clarification card
+- Track form completion status
+- Validate that all required clarifications have selections
+- Store form submission status (idle, loading, success, error)
+
+---
+
+**INTERACTIVE BEHAVIOR:**
+
+**Radio Button Selection:**
+- Clicking radio button or label should select that option
+- Only one option per clarification card can be selected
+- Selection should trigger immediate visual update
+- Clicking same option again should keep it selected (no toggle)
+- Selection updates state in real-time
+
+**Continue Button Interaction:**
+- Initially enabled if form has no required fields
+- Can be enabled/disabled based on validation
+- On click:
+  - Validate all required clarifications have selections
+  - If invalid: Show error message or highlight unfilled cards
+  - If valid:
+    - Show loading state (optional: "Processing..." text, spinner)
+    - Disable button during submission
+    - Submit form data to parent component or API
+    - Handle success: Show confirmation or navigate to next step
+    - Handle error: Display error message, keep form editable
+    - Clear loading state
+
+**Form Validation:**
+- All clarification cards are required by default
+- Cannot submit with empty selections
+- Show validation errors clearly (highlight cards, error message below)
+- Validation runs on button click (not on every change)
+
+**Keyboard Navigation:**
+- Tab key cycles through all interactive elements (radio buttons, button)
+- Shift+Tab goes backward
+- Arrow keys change radio selection (up/down arrows cycle through options)
+- Enter key selects focused radio option
+- Space bar selects focused radio option
+- Enter on Continue button submits form
+
+**Error Handling:**
+- If form submission fails: Display error message
+- Error message appears below clarifications or as toast notification
+- User can correct and resubmit
+- Clear error on new selection
+
+---
+
+**RESPONSIVE BEHAVIOR:**
+
+**Desktop (1024px+):**
+- Form max-width: 600px, centered
+- All elements fully visible without scrolling (if content fits)
+- Hover effects on buttons and radio labels
+- Comfortable spacing around all elements
+
+**Tablet (768px - 1023px):**
+- Form max-width: 550px
+- Slightly reduced padding: 30px horizontal
+- Same card and button sizes
+- Touch-friendly radio buttons (min 44x44px touch target)
+
+**Mobile (320px - 767px):**
+- Form width: 100% with 20px side padding
+- Reduced top padding for logo (15-20px)
+- Card padding: 16-20px (slightly reduced)
+- Radio button size: 18-20px (easily tappable)
+- Button height increased for touch: 16-18px padding
+- Question text: Ensure line breaks are readable
+- Stack all elements vertically
+- No horizontal scrolling
+
+**Very Small Screens (< 360px):**
+- Reduce logo size slightly (20-24px)
+- Reduce font sizes minimally (maintain 13px minimum)
+- Keep full functionality, prioritize readability
+
+---
+
+**SCROLLING BEHAVIOR:**
+
+- If content exceeds viewport height:
+  - Form scrolls vertically
+  - Logo may remain fixed or scroll (design choice)
+  - Continue button may stick to bottom (optional enhancement)
+  - Ensure all cards are easily scrollable to
+  - Consider smooth scroll behavior
+
+---
+
+**ACCESSIBILITY REQUIREMENTS:**
+
+**Semantic HTML:**
+- Use `<form>` element as wrapper
+- Use `<fieldset>` for each clarification card group
+- Use `<legend>` for clarification text
+- Use `<label>` properly associated with radio buttons via `htmlFor`
+- Use `<button>` for submit action
+
+**ARIA Attributes:**
+- `aria-label` for clarification cards if needed
+- `aria-required="true"` on required fields
+- `aria-invalid="true"` on validation errors
+- `aria-describedby` to link errors to form fields
+- `role="group"` for radio button groups
+- `aria-live="polite"` for error messages
+
+**Visual Accessibility:**
+- Color contrast: 4.5:1 minimum for all text (WCAG AA)
+- Focus indicators: Clear, visible outline on all interactive elements
+- Radio buttons: Clear visual indication of selected state
+- Error messages: Color + text (not just red color alone)
+- Readable font sizes: 13px minimum for regular text, 14px for labels
+
+**Keyboard Accessibility:**
+- All controls accessible via keyboard
+- Logical tab order (top to bottom, left to right)
+- No keyboard traps
+- Focus management after form submission
+- Visible focus indicator on all focusable elements
+
+**Screen Reader Support:**
+- Form structure announced correctly
+- Radio group purpose is clear
+- Error messages are announced
+- Button purpose is clear ("Continue" not just generic "Submit")
+- Required fields are announced
+
+---
+
+**TECHNICAL REQUIREMENTS:**
+
+**Framework:**
+- React (hooks-based, modern approach)
+- Tailwind CSS OR CSS Modules OR styled-components
+- No external UI component libraries (build from scratch)
+- TypeScript recommended
+
+**State Management:**
+```javascript
+const [formData, setFormData] = useState({
+  clarifications: [
+    { id: "c1", selectedOption: null },
+    { id: "c2", selectedOption: null }
+  ]
+});
+
+const [isSubmitting, setIsSubmitting] = useState(false);
+const [errors, setErrors] = useState([]);
+```
+
+**Hooks Used:**
+- `useState` for form data, loading, errors
+- `useCallback` for event handlers (optimize re-renders)
+- `useReducer` optional for complex form logic
+- `useEffect` for side effects (if needed)
+
+**Event Handlers:**
+- `handleRadioChange(clarificationId, optionId)` - Updates selected option
+- `handleContinueClick()` - Validates and submits form
+- `validateForm()` - Returns validation result
+
+**Code Structure:**
+- Single component or split into sub-components:
+  - `<QuestionCard />` - Main question display
+  - `<ClarificationCard />` - Individual radio group
+  - `<RadioOption />` - Single radio button + label
+  - `<ContinueButton />` - Submit button
+- Props should be well-defined and typed
+- Comments for complex logic
+- Clean, readable code following React best practices
+
+**Error Handling:**
+- Try-catch blocks for API calls
+- Graceful error messages
+- Retry logic (optional)
+- Fallback UI states
+
+**Performance:**
+- Memoize clarification cards if list is large (React.memo)
+- useCallback for handlers to prevent unnecessary re-renders
+- Avoid inline function definitions in JSX
+- Optimize re-renders with proper dependency arrays
+
+**Browser Support:**
+- Modern browsers (Chrome, Firefox, Safari, Edge latest)
+- Mobile browsers (iOS Safari, Chrome Mobile)
+- Graceful degradation for older browsers (optional)
+
+---
+
+**OPTIONAL ENHANCEMENTS:**
+
+1. **Progress Indicator:** Show "Step X of Y" to indicate progress
+2. **Sticky Footer Button:** Keep "Continue" button visible while scrolling
+3. **Loading Spinner:** Animated spinner in button during submission
+4. **Toast Notifications:** Show success/error messages as toast
+5. **Smooth Transitions:** Fade-in animations for clarification cards
+6. **Card Highlighting:** Highlight unfilled cards on validation error
+7. **Selection Summary:** Show selected answers before final submit
+8. **Undo/Reset:** Option to reset form to initial state
+9. **Save Progress:** Auto-save form data to localStorage
+10. **Analytics:** Track which options are selected most
+11. **Tooltips:** Optional help text on hover for complex questions
+12. **Conditional Logic:** Show/hide certain clarifications based on answers
+13. **Character Limit Indicator:** If answers had text input (not applicable here)
+14. **Skip Option:** Allow skipping non-required clarifications
+15. **Dark/Light Mode:** Support theme toggle
+
+---
+
+**LAYOUT STRUCTURE:**
+
+```
+┌─────────────────────────────────┐
+│ Luimo                           │
+│                                 │
+│ Question                        │
+│ Since you're already...         │
+│ full-stack application...       │
+│                                 │
+│ Clarifications                  │
+│ ┌─────────────────────────────┐ │
+│ │ Since you're already...      │ │
+│ │ ○ Yes, I can try            │ │
+│ │ ● Not now, just keep it...  │ │
+│ │ ○ Complete No               │ │
+│ └─────────────────────────────┘ │
+│ ┌─────────────────────────────┐ │
+│ │ Since you're already...      │ │
+│ │ ○ Yes, I can try            │ │
+│ │ ● Not now, just keep it...  │ │
+│ │ ○ Complete No               │ │
+│ └─────────────────────────────┘ │
+│                                 │
+│      [    Continue    ]         │
+│                                 │
+└─────────────────────────────────┘
+```
+
+---
+
+**DELIVERABLES:**
+
+- Fully functional React form component
+- Dynamic clarification card rendering
+- Radio button selection with state management
+- Form validation logic
+- Continue button with submission handling
+- Mobile-responsive design (all breakpoints)
+- Full keyboard navigation support
+- WCAG AA accessibility compliance
+- Clean, commented, production-ready code
+- Error handling and user feedback
+- No console errors or warnings
+- Smooth animations and transitions
+- Proper TypeScript types (if using TypeScript)
+
+---
+
+**ADDITIONAL CONSIDERATIONS:**
+
+- **Data Persistence:** Should form data persist if user navigates away?
+- **API Endpoint:** Where should form data be submitted?
+- **Success Action:** What happens after successful submission? (Navigate to next step, show confirmation, etc.)
+- **Timeout Handling:** How long before submission times out?
+- **Offline Support:** Should form work offline? (Optional)
+- **Mobile-First Approach:** Design should prioritize mobile experience
+- **Testing:** Include unit tests for form logic and components
+- **Documentation:** Document props, state, and usage in JSDoc comments
+
+---

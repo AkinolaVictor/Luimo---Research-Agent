@@ -1,0 +1,674 @@
+Here's a comprehensive and detailed prompt for converting this "Luimo Research Plan" UI into code:
+
+---
+
+**COMPREHENSIVE DESIGN-TO-CODE CONVERSION PROMPT: LUIMO RESEARCH PLAN DISPLAY**
+
+**Project Overview:**
+Convert the "Luimo Research Plan" UI mockup into a fully functional, responsive React component. This is a research results display interface that presents a generated plan/solution to the user with options to accept or regenerate. The component should be production-ready with proper state management, loading states, animations, and user interaction patterns.
+
+---
+
+**VISUAL DESIGN SPECIFICATIONS:**
+
+**Color Palette:**
+- Primary Background: Deep black (#0f0f0f or #1a1a1a)
+- Card/Box Background: Medium gray (#4a4a4a or #555555)
+- Text Primary: White (#ffffff)
+- Text Secondary: Light gray (#d0d0d0)
+- Text Tertiary: Very light gray (#b0b0b0) for secondary information
+- Secondary Button Background: Medium gray (#4a4a4a or #555555)
+- Secondary Button Hover: Lighter gray (#6a6a6a)
+- Primary Button Background: Medium gray (#4a4a4a or #555555)
+- Primary Button Hover: Lighter gray (#6a6a6a)
+- Border Color: Subtle gray (#333333 or #3a3a3a)
+- Accent Color (for highlights): Optional light gray (#e0e0e0)
+- Divider Color: #3a3a3a or #2a2a2a (for separating plan items)
+
+**Typography:**
+
+**Logo Section:**
+- "Luimo" Text:
+  - Font: Clean sans-serif (Inter, Segoe UI, or system default)
+  - Size: 24-28px
+  - Weight: 600-700 (semibold to bold)
+  - Color: White
+  - Position: Top-left with 30-40px padding from edges
+  - Spacing: Consistent across all pages
+
+**Question Section:**
+- Section Label "Question":
+  - Font: Same sans-serif
+  - Size: 14-16px
+  - Weight: 600 (semibold)
+  - Color: White
+  - Margin Bottom: 12-16px
+
+- Question Text (Description):
+  - Font: Same sans-serif
+  - Size: 13-15px
+  - Weight: 400 (regular)
+  - Color: Light gray (#d0d0d0)
+  - Line Height: 1.6
+  - Margin Bottom: 24-32px
+  - Max-width: 90% of container
+
+**Plan Section:**
+- Section Label "Plan":
+  - Font: Same sans-serif
+  - Size: 14-16px
+  - Weight: 600 (semibold)
+  - Color: White
+  - Margin Bottom: 8-12px
+  - Margin Top: 30-40px (above plan section)
+
+- Plan Description Text:
+  - Font: Same sans-serif
+  - Size: 13-14px
+  - Weight: 400 (regular)
+  - Color: Light gray (#b0b0b0)
+  - Line Height: 1.5
+  - Margin Bottom: 16-20px
+  - Provides context for the plan
+
+**Plan Card/Box:**
+- Background: #4a4a4a or #555555
+- Border: 1px solid #3a3a3a (subtle)
+- Border Radius: 10-12px
+- Padding: 20-24px horizontal, 18-22px vertical
+- Box Shadow: Optional subtle shadow for depth
+- Margin Bottom: 20-24px
+
+**Plan Items (Inside Card):**
+- Item Text:
+  - Font: Same sans-serif
+  - Size: 13-14px
+  - Weight: 400 (regular)
+  - Color: Light gray (#d0d0d0)
+  - Line Height: 1.6
+  - Margin Bottom: 12-16px (between items)
+  - Last item: No bottom margin
+  - Text can be multi-line, wrapping naturally
+
+- Item Separator:
+  - Optional subtle divider between items
+  - Color: #3a3a3a or transparent
+  - Height: 1px
+  - Margin: 12-16px vertical
+  - Spans full width of card
+
+- First Item:
+  - No top margin or separator
+  - Starts immediately after card padding
+
+- Last Item:
+  - No bottom margin or separator
+  - Ends with card padding
+
+**Button Section:**
+- Spacing between "Regenerate" and "Continue" button: 12-16px
+- Total width: Same as plan card (full container width)
+
+**Secondary Button (Regenerate Plan):**
+- Text: "I don't like this plan, regenerate another plan"
+- Font: Same sans-serif
+- Size: 14-16px
+- Weight: 500-600 (medium to semibold)
+- Color: White
+- Background: #4a4a4a or #555555
+- Border: 1px solid #3a3a3a (subtle)
+- Border Radius: 10-12px
+- Padding: 14-18px vertical, 24-32px horizontal
+- Width: 100% of container
+- Cursor: pointer
+- States:
+  - Default: Background #4a4a4a, white text
+  - Hover: Background #6a6a6a (lighter), smooth transition 200ms
+  - Active/Click: Background #5a5a5a, subtle scale(0.98) transform
+  - Disabled: Background #3a3a3a, opacity 0.5, cursor not-allowed
+  - Loading: Show spinner, text change to "Regenerating..."
+- Focus: Visible focus outline (2px white border)
+- Text Alignment: Center
+
+**Primary Button (Continue):**
+- Text: "Continue"
+- Font: Same sans-serif
+- Size: 14-16px
+- Weight: 600 (semibold)
+- Color: White
+- Background: #4a4a4a or #555555
+- Border: None
+- Border Radius: 10-12px
+- Padding: 14-18px vertical, 24-32px horizontal
+- Width: 100% of container
+- Cursor: pointer
+- States:
+  - Default: Background #4a4a4a, white text
+  - Hover: Background #6a6a6a (lighter), smooth transition 200ms
+  - Active/Click: Background #5a5a5a, subtle scale(0.98) transform
+  - Disabled: Background #3a3a3a, opacity 0.5, cursor not-allowed
+- Focus: Visible focus outline (2px white border)
+- Text Alignment: Center
+- Emphasis: Can be slightly more prominent than secondary button (optional)
+
+---
+
+**SPACING & LAYOUT:**
+
+**Overall Container:**
+- Full viewport height minimum (100vh)
+- Horizontal padding: 20px on mobile, 40px on tablet, 60-80px on desktop
+- Vertical padding: 30-40px top, 40-60px bottom
+- Max-width: 600px (centered form)
+- Vertically scrollable if content exceeds viewport
+
+**Section Spacing:**
+- Logo top margin: 30-40px
+- Space after "Question" label to question text: 12-16px
+- Space after question text to "Plan" section: 24-32px
+- Space after "Plan" label to plan description: 8-12px
+- Space after plan description to plan card: 12-16px
+- Space after plan card to buttons: 20-24px
+- Space between "Regenerate" and "Continue" button: 12-16px
+- Bottom margin from "Continue" button: 40-60px
+
+**Card Internal Layout:**
+- Plan card padding: 20-24px (all sides)
+- First item top padding: Included in card padding (no extra)
+- Item line height: 1.6 (allows good readability)
+- Item bottom margin: 12-16px (consistent spacing)
+- Multi-line text wraps naturally within card
+- No fixed item heights (content-driven)
+
+**Button Sizing:**
+- Button width: 100% of container
+- Button height: Auto (determined by padding + font size)
+- Min-height: 44px (touch-friendly for mobile)
+- Button group width: 100% of container
+
+---
+
+**COMPONENT DETAILS:**
+
+**Question Display Section:**
+- Static text display (non-interactive)
+- Shows the original research question
+- Provides context for understanding the generated plan
+- Background: Transparent
+- No borders or special styling
+- Simple typography hierarchy
+
+**Plan Description:**
+- Short introductory text above plan card
+- Example: "Here's the plan I'll follow to arrive at an answer for the question."
+- Guides user on what they're about to see
+- Helps contextualize the plan items
+
+**Plan Card (Container):**
+- Holds multiple plan items/steps
+- Visually distinct from other elements
+- Each plan represents a step or action in the research process
+- Items listed sequentially (top to bottom)
+- Can contain 2-6+ items (variable count)
+- Scrollable if content exceeds card height (optional overflow handling)
+
+**Plan Items (Content):**
+- Each item is a line or paragraph of text
+- Items are separated by whitespace or subtle dividers
+- Represent steps, suggestions, or actions
+- Read top to bottom sequentially
+- Text is descriptive and informative
+- Examples:
+  - "Since you're already comfortable with Next.js, I'd build it as a Next.js full-stack application"
+  - "I'd build it as a Next.js full-stack application."
+  - "Since you're already comfortable with Next.js, I'd build it as a Next.js full-stack application"
+  - "Since you're already comfortable with Next.js, I'd build it as a Next.js full-stack application"
+
+**Secondary Button (Regenerate):**
+- Purpose: Allow user to request a different plan
+- Action: Triggers plan regeneration
+- Behavior:
+  - On click: Disable button, show loading state, show "Regenerating..." text
+  - Show loading spinner inside or beside button text
+  - Call API to generate new plan
+  - On success: Replace current plan with new plan, hide loading state, re-enable button
+  - On error: Show error message, re-enable button, allow retry
+- Position: Above primary button
+- Visual Treatment: Secondary importance (same color as card, subtle border)
+- Accessibility: Clear descriptive text
+
+**Primary Button (Continue):**
+- Purpose: Accept current plan and proceed
+- Action: Advances to next step in flow
+- Behavior:
+  - On click: Disable button, show loading state
+  - Submit selected plan data
+  - Navigate to next step or show confirmation
+  - On error: Show error message, re-enable button, allow retry
+- Position: Below secondary button
+- Visual Treatment: Primary action (can be slightly more prominent)
+- Accessibility: Clear, concise label
+
+---
+
+**FORM/DATA STRUCTURE:**
+
+**Plan Data Model:**
+```
+{
+  question: {
+    id: "q1",
+    text: "Since you're already comfortable with Next.js...",
+  },
+  planDescription: "Here's the plan I'll follow to arrive at an answer for the question.",
+  planItems: [
+    {
+      id: "item1",
+      text: "Since you're already comfortable with Next.js, I'd build it as a Next.js full-stack application"
+    },
+    {
+      id: "item2",
+      text: "I'd build it as a Next.js full-stack application."
+    },
+    {
+      id: "item3",
+      text: "Since you're already comfortable with Next.js, I'd build it as a Next.js full-stack application"
+    },
+    {
+      id: "item4",
+      text: "Since you're already comfortable with Next.js, I'd build it as a Next.js full-stack application"
+    }
+  ],
+  generationId: "gen_12345", // Track which generation is being viewed
+  timestamp: 1695000000000
+}
+```
+
+**State Management:**
+```javascript
+const [planData, setPlanData] = useState(initialPlan);
+const [isRegenerating, setIsRegenerating] = useState(false);
+const [isContinuing, setIsContinuing] = useState(false);
+const [error, setError] = useState(null);
+const [regenerationCount, setRegenerationCount] = useState(0);
+```
+
+---
+
+**INTERACTIVE BEHAVIOR:**
+
+**Plan Display:**
+- Plan loads on component mount
+- Can display with animation (fade-in, slide-up)
+- Items can animate in sequentially (optional enhancement)
+- If plan content exceeds viewport, user scrolls to see all items
+
+**Regenerate Button Interaction:**
+- On click:
+  - Validate that regeneration is allowed (rate limiting optional)
+  - Set loading state: `isRegenerating = true`
+  - Change button text to "Regenerating..." or show loading indicator
+  - Disable button and all other interactive elements
+  - Call API endpoint to generate new plan with same question context
+- On success:
+  - Replace `planData` with new plan
+  - Animate out old plan (fade) and animate in new plan
+  - Clear loading state: `isRegenerating = false`
+  - Re-enable button
+  - Reset error state
+  - Optionally track regeneration count
+  - Scroll to top of plan card
+- On error:
+  - Display error message: "Failed to generate plan. Please try again."
+  - Clear loading state
+  - Re-enable button
+  - Log error for debugging
+  - Optionally allow retry
+
+**Continue Button Interaction:**
+- On click:
+  - Validate form (all data ready)
+  - Set loading state: `isContinuing = true`
+  - Change button text to "Processing..." or show loading indicator
+  - Disable button
+  - Submit plan data to parent component or API
+  - Handle response:
+    - Success: Emit onComplete callback, navigate to next step, show confirmation
+    - Error: Display error message, re-enable button, allow retry
+  - Clear loading state
+
+**Loading States:**
+- Show spinner inside button
+- Change button text to "Loading...", "Regenerating...", "Processing..."
+- Disable button interaction during loading
+- Prevent accidental double submissions
+- Loading timeout (5-10 seconds) with error fallback
+
+**Error Handling:**
+- Network errors: "Unable to connect. Please check your connection and try again."
+- API errors: "Failed to generate plan. Please try again."
+- Timeout errors: "Request took too long. Please try again."
+- Display errors clearly below buttons or as modal
+- Provide retry mechanism
+- Log errors for debugging
+
+**Keyboard Navigation:**
+- Tab cycles through buttons (Regenerate → Continue)
+- Shift+Tab goes backward
+- Enter key activates focused button
+- Space bar activates focused button
+- Arrow keys not required (linear layout)
+
+**Accessibility for Loading:**
+- Use `aria-busy="true"` while loading
+- Use `aria-label` to announce loading state
+- Screen readers announce "Loading, please wait"
+
+---
+
+**RESPONSIVE BEHAVIOR:**
+
+**Desktop (1024px+):**
+- Form max-width: 600px, centered
+- All content visible without excessive scrolling
+- Comfortable spacing around all elements
+- Hover effects on buttons
+- Plan card padding: 24px
+
+**Tablet (768px - 1023px):**
+- Form max-width: 550px
+- Slightly reduced padding: 30px horizontal
+- Plan card padding: 20px
+- Button padding: 14-16px vertical
+- Touch-friendly button sizing (min 44x44px)
+- Reduced margins: 16-20px between sections
+
+**Mobile (320px - 767px):**
+- Form width: 100% with 20px side padding
+- Reduced top padding: 15-20px
+- Plan card padding: 16-18px
+- Button padding: 14-16px vertical, 20-24px horizontal
+- Button height: Minimum 44px (touch target)
+- Font sizes: Maintain 13px minimum
+- Plan items: Ensure readable line length (not too wide)
+- Buttons: Full width with tighter spacing
+- Reduced section margins: 12-16px between sections
+- No horizontal scrolling
+
+**Very Small Screens (< 360px):**
+- Logo size: 20-24px
+- Section labels: 13-14px
+- Plan text: 12-13px (minimum readable)
+- Button padding: 12-14px vertical
+- Container padding: 16px horizontal
+- Maintain all functionality
+
+---
+
+**SCROLLING BEHAVIOR:**
+
+**If Content Fits in Viewport:**
+- No scrolling needed
+- All elements visible
+- Buttons fixed at bottom (optional sticky footer)
+
+**If Content Exceeds Viewport:**
+- Page scrolls vertically
+- Logo remains at top (optional: make sticky)
+- Plan card scrolls with content
+- Buttons remain at bottom (optional: make sticky)
+- Smooth scroll behavior (CSS: `scroll-behavior: smooth`)
+- Ensure no content is hidden behind fixed elements
+
+**Sticky Footer (Optional Enhancement):**
+- Keep buttons visible while scrolling plan card
+- Add slight shadow/border to separate from content
+- Smooth transition when scrolling
+- Maintain readability of content
+
+---
+
+**ANIMATIONS & TRANSITIONS:**
+
+**Plan Load Animation:**
+- Fade-in: 300-400ms ease-in
+- Slide-up: 30-50px, 300-400ms ease-out
+- Or simple fade-in for subtlety
+
+**Item Sequential Animation (Optional):**
+- Each plan item fades in with slight delay
+- Delay between items: 50-100ms
+- Total duration: 400-600ms
+- Creates perception of content appearing naturally
+
+**Button Hover Animation:**
+- Background color transition: 200ms ease
+- Subtle scale transform: 1.02x (optional)
+- Smooth, not jarring
+
+**Loading Animation:**
+- Spinner rotation: Continuous 1-2s animation
+- Fade-in: 200ms ease
+- Can use CSS spinner or SVG animation
+
+**Error Message Animation:**
+- Slide-down or fade-in: 200ms ease
+- Attention-getting but not startling
+- Can pulse or shake subtly (optional)
+
+**Button State Transitions:**
+- Normal → Hover: 200ms ease
+- Hover → Active: Immediate
+- Active → Normal: 200ms ease
+- Disabled: No transitions (static)
+
+---
+
+**ACCESSIBILITY REQUIREMENTS:**
+
+**Semantic HTML:**
+- Use `<section>` for major sections (Question, Plan)
+- Use `<article>` for plan card/content area
+- Use `<button>` for interactive buttons (not divs)
+- Use `<header>` or `<h1>` for page/section headings
+- Use `<p>` or `<div>` for text content appropriately
+
+**ARIA Attributes:**
+- `aria-label="Research question"` on question section
+- `aria-label="Generated research plan"` on plan card
+- `aria-label="Plan items"` on items container
+- `aria-busy="true"` on buttons while loading
+- `aria-disabled="true"` on disabled buttons
+- `aria-live="polite"` on error message area
+- `aria-describedby` to link buttons to descriptions if needed
+- `role="status"` on loading messages
+- `role="alert"` on error messages
+
+**Visual Accessibility:**
+- Color contrast: 4.5:1 minimum for all text (WCAG AA)
+- Focus indicators: Clear, visible outline on buttons (2px white or accent)
+- Button text clearly describes action
+- Loading indicator visible (not just spinner)
+- Error messages in text + color (not color alone)
+- Text sizes: 14px+ for labels, 13px+ for body
+
+**Keyboard Accessibility:**
+- All buttons accessible via keyboard
+- Logical tab order: Question → Plan → Regenerate button → Continue button
+- No keyboard traps
+- Focus visible on all focusable elements
+- Enter/Space activates buttons
+- Clear focus management
+
+**Screen Reader Support:**
+- Sections properly labeled and described
+- Buttons have meaningful labels ("Continue", not "Submit")
+- Loading state announced: "Loading, please wait"
+- Error state announced: "Error: [error message]"
+- Plan items grouped with label
+- Success state announced when form completes
+
+**Text Alternatives:**
+- All icons have text labels (e.g., spinner icon has "Loading" text)
+- No information conveyed by color alone
+- Visual separators have text equivalents if needed
+
+---
+
+**TECHNICAL REQUIREMENTS:**
+
+**Framework:**
+- React (hooks-based, modern approach)
+- Tailwind CSS OR CSS Modules OR styled-components
+- No external UI component libraries (build from scratch)
+- TypeScript recommended
+
+**State Management:**
+```javascript
+// Component state
+const [planData, setPlanData] = useState(null);
+const [isRegenerating, setIsRegenerating] = useState(false);
+const [isContinuing, setIsContinuing] = useState(false);
+const [error, setError] = useState(null);
+const [regenerationAttempt, setRegenerationAttempt] = useState(0);
+
+**Hooks Used:**
+- `useState` for form data, loading, errors
+- `useEffect` for component initialization, API calls
+- `useCallback` for event handlers (optimize re-renders)
+- `useRef` for managing focus during updates (optional)
+
+**Event Handlers:**
+```javascript
+const handleRegenerateClick = async () => {
+  // Validation, loading state, API call, error handling
+};
+
+const handleContinueClick = async () => {
+  // Validation, loading state, submission, callback
+};
+```
+
+**API Integration:**
+- Regenerate endpoint: `POST /api/research/regenerate-plan`
+  - Payload: `{ questionId, previousPlanId }`
+  - Response: `{ planItems: [], planDescription: string }`
+- Continue endpoint: `POST /api/research/continue`
+  - Payload: `{ planData, questionId }`
+  - Response: `{ success: boolean, nextStep: string }`
+
+**Error Handling:**
+- Try-catch blocks for async operations
+- User-friendly error messages
+- Retry logic with exponential backoff
+- Fallback UI states
+- Console logging for debugging
+
+**Performance Optimization:**
+- Memoize plan items if list is large (React.memo)
+- useCallback for event handlers
+- useEffect cleanup for async operations
+- Avoid inline function definitions
+- Lazy load images if needed (none in this design)
+- Optimize re-renders with proper dependency arrays
+
+**Browser Support:**
+- Modern browsers (Chrome, Firefox, Safari, Edge latest)
+- Mobile browsers (iOS Safari, Chrome Mobile)
+- Minimum iOS 12, Android 6
+
+---
+
+**LAYOUT STRUCTURE:**
+
+```
+┌─────────────────────────────────┐
+│ Luimo                           │
+│                                 │
+│ Question                        │
+│ Since you're already...         │
+│ full-stack application...       │
+│                                 │
+│ Plan                            │
+│ Here's the plan I'll follow...  │
+│ ┌─────────────────────────────┐ │
+│ │ Since you're already...      │ │
+│ │                              │ │
+│ │ I'd build it as a Next.js... │ │
+│ │                              │ │
+│ │ Since you're already...      │ │
+│ │                              │ │
+│ │ Since you're already...      │ │
+│ └─────────────────────────────┘ │
+│                                 │
+│ [Regenerate another plan]       │
+│                                 │
+│      [    Continue    ]         │
+│                                 │
+└─────────────────────────────────┘
+```
+
+---
+
+**DATA FLOW:**
+
+```
+Component Mounts
+       ↓
+Load Initial Plan Data (from props or API)
+       ↓
+Display Question + Plan Items
+       ↓
+User Interaction:
+  ├─ Regenerate Button
+  │  ├─ Show Loading State
+  │  ├─ Call Regenerate API
+  │  ├─ Receive New Plan Data
+  │  ├─ Animate Out Old Plan
+  │  ├─ Animate In New Plan
+  │  └─ Hide Loading State
+  │
+  └─ Continue Button
+     ├─ Show Loading State
+     ├─ Validate Plan Data
+     ├─ Call Submit API
+     ├─ Handle Response (Success/Error)
+     ├─ Emit onComplete Callback
+     └─ Hide Loading State
+```
+
+---
+
+**DELIVERABLES:**
+
+- Fully functional React component for displaying research plans
+- Regenerate functionality with API integration
+- Continue/submit functionality with proper state management
+- Comprehensive loading and error states
+- Mobile-responsive design (all breakpoints)
+- Full keyboard navigation support
+- WCAG AA accessibility compliance
+- Smooth animations and transitions
+- Clean, commented, production-ready code
+- Proper TypeScript types (if using TypeScript)
+- Error handling with user feedback
+- No console errors or warnings
+- Optimized re-renders
+- Proper event handling
+- Accessibility features (ARIA, semantic HTML)
+
+
+**RELATED COMPONENTS:**
+
+This component likely follows from:
+- Luimo Deep Researcher (initial form)
+- Research Clarification Form (follow-up questions)
+
+And likely leads to:
+- Plan acceptance confirmation
+- Next research step or results display
+- Research history/archive view
+
+---
+
+This comprehensive prompt provides all necessary detail to convert the Luimo Research Plan display into a production-quality React application with full interactivity, accessibility, responsive design, and robust error handling.

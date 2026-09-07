@@ -1,0 +1,825 @@
+Here is a comprehensive prompt to build the result page:
+
+---
+**Project Overview:**
+Convert the "Luimo Research Results Summary" UI mockup into a fully functional, responsive React component. This is a comprehensive research results display that presents the final answer, advantages, and additional insights with rich content formatting and a download action. The component should be production-ready with proper content hierarchy, accessibility, responsive design, and export functionality.
+
+---
+
+**VISUAL DESIGN SPECIFICATIONS:**
+
+**Color Palette:**
+- Primary Background: Deep black (#0f0f0f or #1a1a1a)
+- Text Primary: White (#ffffff)
+- Text Secondary: Light gray (#d0d0d0)
+- Text Tertiary: Very light gray (#b0b0b0) for secondary information
+- Bullet Points: White (#ffffff) or accent gray (#b0b0b0)
+- Section Divider: Subtle gray (#3a3a3a or #2a2a2a)
+- Button Background: Medium gray (#4a4a4a or #555555)
+- Button Hover: Lighter gray (#6a6a6a)
+- Button Text: White (#ffffff)
+- Border Color: Subtle gray (#333333 or #3a3a3a)
+- Link Color (optional): Light gray (#b0b0b0) with underline
+- Accent Background (optional): Slightly lighter gray (#5a5a5a)
+
+**Typography:**
+
+**Logo Section:**
+- "Luimo" Text:
+  - Font: Clean sans-serif (Inter, Segoe UI, or system default)
+  - Size: 24-28px
+  - Weight: 600-700 (semibold to bold)
+  - Color: White
+  - Position: Top-left with 30-40px padding from edges
+  - Sticky position (remains visible when scrolling)
+
+**Section Headers:**
+- "Question", "Answer to Question", "Advantages", "Another Title":
+  - Font: Same sans-serif
+  - Size: 16-18px
+  - Weight: 600-700 (semibold to bold)
+  - Color: White
+  - Margin Top: 32-40px (first section has less, subsequent sections have more)
+  - Margin Bottom: 12-16px
+  - Letter Spacing: Normal (0px)
+  - Line Height: 1.4
+
+**Body Text:**
+- Paragraph Text:
+  - Font: Same sans-serif
+  - Size: 13-15px
+  - Weight: 400 (regular)
+  - Color: Light gray (#d0d0d0)
+  - Line Height: 1.6-1.8 (readability for longer content)
+  - Margin Bottom: 12-16px (between paragraphs)
+  - Last paragraph in section: Same margin as others
+  - Max-width: 90% of container (prevents very long line lengths)
+  - Text alignment: Left (flush-left)
+
+**Bullet Point Lists:**
+- Bullet Character:
+  - Style: Solid circle (●)
+  - Size: 6-8px (proportional to text)
+  - Color: White (#ffffff)
+  - Margin Right: 8-12px (space between bullet and text)
+
+- Bullet Item Text:
+  - Font: Same sans-serif
+  - Size: 13-15px
+  - Weight: 400 (regular)
+  - Color: Light gray (#d0d0d0)
+  - Line Height: 1.5-1.6
+  - Margin Left: 16-20px (indent from left edge)
+  - Margin Bottom: 8-12px (between items)
+  - Last item: Same margin as others (or slightly less)
+
+- Nested Lists (if applicable):
+  - Secondary bullet indent: 32-40px from left
+  - Same text styling as primary bullets
+  - Visual distinction: Optional different bullet style (○ for secondary)
+
+- Bullet List Groups:
+  - Space between separate bullet groups: 16-20px
+  - Represents grouped advantages or related items
+  - Clear visual separation between groups
+
+**Download Button:**
+- Text: "Download"
+- Font: Same sans-serif
+- Size: 14-16px
+- Weight: 600 (semibold)
+- Color: White
+- Background: #4a4a4a or #555555
+- Border: None
+- Border Radius: 10-12px
+- Padding: 14-18px vertical, 32-40px horizontal
+- Width: 100% of container or max 400px (centered if less than full width)
+- Min-height: 44px (touch-friendly)
+- Cursor: pointer
+- States:
+  - Default: Background #4a4a4a, white text
+  - Hover: Background #6a6a6a (lighter), smooth transition 200ms
+  - Active/Click: Background #5a5a5a, subtle scale(0.98) transform
+  - Disabled: Background #3a3a3a, opacity 0.5, cursor not-allowed
+  - Loading: Show spinner, text changes to "Downloading..." or "Preparing..."
+- Focus: Visible focus outline (2px white border)
+- Text Alignment: Center
+
+---
+
+**SPACING & LAYOUT:**
+
+**Overall Container:**
+- Full viewport height minimum (100vh)
+- Vertical scrolling layout (content-first approach)
+- Horizontal padding: 20px on mobile, 40px on tablet, 60-80px on desktop
+- Vertical padding: 30-40px top, 40-60px bottom
+- Max-width: 650px (wider than previous screens to accommodate content)
+- Content flows top to bottom sequentially
+
+**Section Spacing:**
+- Logo top margin: 30-40px
+- First section (Question) top margin: 30-40px from logo
+- Space after "Question" header to question text: 12-16px
+- Space between Question section and Answer section: 30-40px
+- Space after "Answer to Question" header: 12-16px
+- Space between Answer paragraphs: 12-16px
+- Space between Answer section and Advantages section: 24-32px
+- Space after "Advantages" header: 12-16px
+- Space between bullet groups: 16-20px
+- Space after Advantages and next section: 24-32px
+- Space after "Another Title" header: 12-16px
+- Space between additional sections: 24-32px
+- Space from last content section to Download button: 40-60px
+- Bottom padding after Download button: 40-60px
+
+**Bullet Point Spacing:**
+- Indent: 16-20px from left edge
+- Space between bullet and text: 8-12px
+- Vertical space between items: 8-12px
+- Group spacing: 16-20px between separate bullet groups
+
+**Button Positioning:**
+- Center horizontally if width < 100%
+- Width: 100% on mobile, up to 400px on desktop
+- Margin top: 40-60px
+- Margin bottom: 40-60px (from viewport bottom)
+- Fixed position (optional): Keep button visible at bottom while scrolling
+
+---
+
+**COMPONENT STRUCTURE:**
+
+**Page Layout (Top to Bottom):**
+1. Sticky Logo Header (optional)
+2. Question Section
+   - Header: "Question"
+   - Content: Question text (1-3 lines)
+3. Answer to Question Section
+   - Header: "Answer to Question"
+   - Content: Multiple paragraphs (2-5+)
+4. Advantages Section
+   - Header: "Advantages"
+   - Content: Multiple bullet point groups (2-3 groups)
+5. Additional Sections (Repeatable)
+   - Header: "Another Title", "Section Name", etc.
+   - Content: Paragraphs, lists, or mixed content
+6. Download Button
+   - Full-width or centered button
+   - Fixed or sticky positioning
+
+**Question Section:**
+- Static display of original question
+- Non-interactive
+- Provides context for entire page
+- Simple typography hierarchy
+- Padding: Standard section padding
+- Background: Transparent
+
+**Answer to Question Section:**
+- Rich text display
+- Multiple paragraphs (can be 2-10+)
+- Each paragraph separated by whitespace
+- Natural text flow, left-aligned
+- Padding: Standard section padding
+- No special formatting (unless markdown support added)
+- Can include line breaks for readability
+
+**Advantages Section:**
+- Multiple bullet point lists
+- Lists grouped by topic or category
+- Each group separated by spacing
+- Bullet points clearly formatted
+- Can include 2-3 groups with 2-6 items each
+- Padding: Standard section padding
+- Optional: Group headers (non-bulleted labels above each group)
+
+**Additional Titled Sections:**
+- Variable number of sections (2-5+)
+- Each with custom header/title
+- Each with descriptive content
+- Can contain paragraphs or bullet lists
+- Flexible content structure
+- Same padding and spacing as other sections
+
+**Download Button:**
+- Full-width on mobile (with padding)
+- Centered or full-width on desktop
+- Prominent placement at bottom
+- Clear action label ("Download")
+- Provides export functionality
+
+---
+
+**CONTENT DATA STRUCTURE:**
+
+**Results Data Model:**
+```
+{
+  question: {
+    id: "q1",
+    text: "Since you're already comfortable with Next.js..."
+  },
+  answer: {
+    id: "ans1",
+    title: "Answer to Question",
+    paragraphs: [
+      "Since you're already comfortable with Next.js, I'd build it as a Next.js full-stack application...",
+      "Since you're already comfortable with Next.js, I'd build it as a Next.js full-stack application...",
+      ...
+    ]
+  },
+  advantages: {
+    id: "adv1",
+    title: "Advantages",
+    groups: [
+      {
+        id: "adv_group1",
+        items: [
+          "Yes, I can try",
+          "Not now, just keep it in mind",
+          "Complete No"
+        ]
+      },
+      {
+        id: "adv_group2",
+        items: [
+          "Yes, I can try",
+          "Not now, just keep it in mind",
+          "Complete No"
+        ]
+      }
+    ]
+  },
+  sections: [
+    {
+      id: "sec1",
+      title: "Another Title",
+      content: {
+        type: "paragraphs",
+        items: [
+          "Since you're already comfortable with Next.js...",
+          "Since you're already comfortable with Next.js..."
+        ]
+      }
+    },
+    {
+      id: "sec2",
+      title: "Another Title",
+      content: {
+        type: "paragraphs",
+        items: [
+          "Since you're already comfortable with Next.js..."
+        ]
+      }
+    }
+  ],
+  downloadFormat: "pdf" | "docx" | "md",
+  downloadUrl: "/api/research/download/res_12345",
+  generatedAt: 1695000000000
+}
+```
+
+---
+
+**INTERACTIVE BEHAVIOR:**
+
+**Page Load:**
+- Content displays on component mount
+- Optional: Sections fade-in sequentially
+- Optional: Scroll-to-top on load
+- Logo becomes sticky once page scrolls
+
+**Scrolling:**
+- Smooth scrolling through all sections
+- Logo remains visible at top (sticky)
+- Content flows naturally
+- No jumping or layout shifts
+- Optional: Parallax effects (subtle)
+
+**Download Button Interaction:**
+- On click:
+  - Validate download data is ready
+  - Set loading state: `isDownloading = true`
+  - Change button text to "Downloading..." or "Preparing..."
+  - Show loading spinner inside button
+  - Disable button and prevent multiple clicks
+  - Make API call to generate/fetch downloadable file
+- On success:
+  - Trigger browser download dialog
+  - File name: Auto-generated based on research ID (e.g., "research_results_001.pdf")
+  - Clear loading state
+  - Re-enable button
+  - Optional: Show success notification
+- On error:
+  - Display error message: "Failed to download. Please try again."
+  - Clear loading state
+  - Re-enable button
+  - Allow retry
+  - Log error for debugging
+
+**Content Highlighting (Optional):**
+- Hover over sections to highlight them
+- Subtle background color change
+- Helps visual navigation of long content
+
+**Copy to Clipboard (Optional Enhancement):**
+- Right-click context menu or dedicated button for sections
+- Copy section text to clipboard
+- Show "Copied!" confirmation
+
+**Text Selection:**
+- User can select and copy any text
+- No restrictions on text selection
+- Supports system copy/paste
+
+**Keyboard Navigation:**
+- Tab navigates to Download button
+- Enter/Space activates Download button
+- Scroll wheel/arrow keys scroll through content
+- No keyboard traps
+
+**Accessibility for Interactive Content:**
+- Use `aria-busy="true"` while downloading
+- Screen readers announce "Downloading" or "Preparing file"
+- After download completes, announce success
+- Focus management after download completes
+
+---
+
+**RESPONSIVE BEHAVIOR:**
+
+**Desktop (1024px+):**
+- Content max-width: 650px, centered
+- Comfortable spacing around all elements
+- All content visible with natural scrolling
+- Hover effects on button
+- Logo sticky at top
+- Button width: Up to 400px, centered
+- Section padding: 60-80px horizontal
+
+**Tablet (768px - 1023px):**
+- Content max-width: 600px
+- Reduced horizontal padding: 40px
+- All sections fully accessible
+- Touch-friendly button sizing (min 44x44px)
+- Bullet point indent: 16-18px
+- Section margins: 24-28px between sections
+- Button width: 80-90% of container or up to 350px
+- Logo sticky remains
+
+**Mobile (320px - 767px):**
+- Content width: 100% with 20px side padding
+- Reduced top padding: 15-20px
+- Simplified spacing: 16-20px between sections
+- Bullet points: Proper indentation maintained (16-18px)
+- Button width: 100% of container (full-width with padding)
+- Button height: Minimum 44px for touch
+- Font sizes: Maintained at readable levels (min 13px)
+- Section headers: 16-18px
+- Body text: 13-14px
+- Bullet text: 13-14px
+- Line height: Increased for readability (1.6-1.8)
+- No horizontal scrolling
+- Comfortable vertical scrolling
+
+**Very Small Screens (< 360px):**
+- Container padding: 16px horizontal
+- Section headers: 15-16px
+- Body text: 12-13px (minimum readable)
+- Bullet indent: 14-16px
+- Button padding: 12-14px vertical
+- Logo size: 20-24px
+- Maintain all functionality
+
+---
+
+**SCROLLING & STICKY ELEMENTS:**
+
+**Logo Behavior:**
+- Initially: Part of normal document flow at top
+- On Scroll Down: Becomes sticky, remains at top
+- On Scroll Up: Returns to normal position
+- Always visible for navigation/branding
+- Optional: Add subtle shadow/border when sticky
+
+**Button Behavior:**
+- Initially: Part of document flow at bottom
+- Option 1 (Floating): Sticky footer, remains visible while scrolling
+  - Add subtle shadow to separate from content
+  - Small gap from bottom of viewport
+  - Animates in smoothly
+- Option 2 (Scroll-through): Normal flow, scrolls with content
+- Depends on content length and design preference
+
+**Content Flow:**
+- All content scrolls vertically
+- No horizontal scrolling
+- Smooth scroll behavior (CSS: `scroll-behavior: smooth`)
+- Content doesn't jump or reflow when scrolling
+
+---
+
+**ANIMATIONS & TRANSITIONS:**
+
+**Page Load Animation:**
+- Fade-in: 300-400ms ease-in for entire page
+- Optional: Section-by-section fade-in with staggered timing
+- Logo fades in subtly
+- Button fades in after content
+
+**Section Reveal Animation (Optional):**
+- Each section fades in as user scrolls
+- Triggered by Intersection Observer API
+- Animation: Fade-in + slight slide-up (20-30px)
+- Duration: 300-400ms ease-out
+
+**Button Hover Animation:**
+- Background color transition: 200ms ease
+- Subtle scale transform: 1.02x (optional)
+- Smooth shadow effect (optional)
+- Not jarring or disruptive
+
+**Loading Animation:**
+- Spinner rotation: Continuous 1-2s animation
+- Smooth transition into loading state: 200ms
+- Can use CSS spinner or SVG animation
+- Button text fades to "Downloading..."
+
+**Sticky Logo Animation:**
+- Smooth transition when becoming sticky
+- Optional fade-in/out effect
+- Subtle shadow appears when sticky
+- No jump or layout shift
+
+**Scroll Behavior:**
+- Smooth scroll-behavior CSS
+- Natural easing, not too fast
+- Respects user's `prefers-reduced-motion` setting
+
+---
+
+**ACCESSIBILITY REQUIREMENTS:**
+
+**Semantic HTML:**
+- Use `<header>` for logo section
+- Use `<main>` for main content area
+- Use `<article>` or `<section>` for each major section
+- Use `<h1>` for logo (or separate header)
+- Use `<h2>` for section headers ("Question", "Answer to Question", etc.)
+- Use `<p>` for paragraphs
+- Use `<ul>` for unordered bullet lists
+- Use `<li>` for bullet point items
+- Use `<button>` for Download action
+
+**ARIA Attributes:**
+- `aria-label="Research Results Summary"` on main content
+- `aria-label="Download results"` on Download button
+- `aria-busy="true"` on button while downloading
+- `aria-disabled="true"` on disabled button state
+- `aria-live="polite"` on download status area
+- `role="status"` for loading/completion messages
+- `role="alert"` for error messages
+- `aria-describedby` to link sections to descriptions if needed
+- `aria-expanded="false"` on collapsible sections (if added as enhancement)
+
+**Visual Accessibility:**
+- Color contrast: 4.5:1 minimum for all text (WCAG AA)
+- Focus indicators: Clear, visible outline on button (2px white or accent)
+- Button text clearly describes action ("Download" not "Click here")
+- Loading indicator visible (not just spinner)
+- Error messages in text + color (not color alone)
+- Text sizes: 14px+ for headers, 13px+ for body
+
+**Keyboard Accessibility:**
+- Tab navigates to Download button (and other interactive elements)
+- Shift+Tab goes backward through elements
+- Enter/Space activates Download button
+- No keyboard traps
+- Focus visible on all focusable elements
+- Skip to main content link (optional)
+- No reliance on mouse hover for content access
+
+**Screen Reader Support:**
+- Page structure announced clearly
+- Section headers announce properly (H2 hierarchy)
+- Bullet lists announced as lists
+- Button purpose is clear: "Download"
+- Loading state announced: "Downloading, please wait"
+- Error state announced: "Error: [error message]"
+- Success state announced: "Download complete"
+- No duplicate or redundant announcements
+
+**Text Alternatives:**
+- All icons have text labels or aria-labels
+- No information conveyed by color alone
+- Visual separators optional (content hierarchy sufficient)
+- Button has clear text label (not just icon)
+
+**Motion & Animation:**
+- Animations respect `prefers-reduced-motion` media query
+- Alternatives for users with motion sensitivity
+- Animations not distracting or excessive
+- No flashing or strobing effects
+
+---
+
+**TECHNICAL REQUIREMENTS:**
+
+**Framework:**
+- React (hooks-based, modern approach)
+- Tailwind CSS OR CSS Modules OR styled-components
+- No external UI component libraries (build from scratch)
+- TypeScript recommended for type safety
+
+**State Management:**
+```javascript
+const [resultsData, setResultsData] = useState(null);
+const [isDownloading, setIsDownloading] = useState(false);
+const [downloadError, setDownloadError] = useState(null);
+const [isLogoSticky, setIsLogoSticky] = useState(false);
+const [downloadFormat, setDownloadFormat] = useState('pdf'); // pdf, docx, md
+```
+
+**Props (If Component-Based):**
+```javascript
+interface ResearchResultsProps {
+  question: string;
+  answer: string[];
+  advantages: AdvantageGroup[];
+  sections: ContentSection[];
+  downloadUrl: string;
+  downloadFormat?: 'pdf' | 'docx' | 'md';
+  onDownload?: (format: string) => Promise<void>;
+  loading?: boolean;
+  error?: string;
+}
+```
+
+**Hooks Used:**
+- `useState` for loading, error, UI state
+- `useEffect` for scroll detection (logo sticky), animations
+- `useCallback` for event handlers
+- `useRef` for scroll position tracking (optional)
+- `useIntersectionObserver` for section reveal animations (optional)
+
+**Event Handlers:**
+```javascript
+const handleDownloadClick = async () => {
+  // Set loading state, make API call, trigger download
+};
+
+const handleScroll = () => {
+  // Detect when to make logo sticky
+};
+```
+
+**File Download Implementation:**
+```javascript
+// Trigger browser download
+const downloadFile = (url, filename) => {
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
+// Or for blob responses:
+const response = await fetch(downloadUrl);
+const blob = await response.blob();
+const url = window.URL.createObjectURL(blob);
+downloadFile(url, 'research_results.pdf');
+```
+
+**Intersection Observer (For Section Animations):**
+```javascript
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+  
+  document.querySelectorAll('[data-animate]').forEach(el => {
+    observer.observe(el);
+  });
+}, []);
+```
+
+**Scroll Detection (For Sticky Logo):**
+```javascript
+useEffect(() => {
+  const handleScroll = () => {
+    setIsLogoSticky(window.scrollY > 100);
+  };
+  
+  window.addEventListener('scroll', handleScroll);
+  return () => window.removeEventListener('scroll', handleScroll);
+}, []);
+```
+
+**Error Handling:**
+- Try-catch blocks for API calls
+- User-friendly error messages
+- Retry logic with exponential backoff
+- Fallback download methods (alternative formats)
+- Console logging for debugging
+- Error boundaries for React errors
+
+**Performance Optimization:**
+- Memoize large content sections (React.memo)
+- useCallback for scroll handlers
+- Debounce scroll events (if intensive)
+- Lazy load images if present (optional)
+- Optimize re-renders with proper dependencies
+- Consider virtual scrolling for very long content (optional)
+- Minimize animations for low-end devices
+
+**Browser Support:**
+- Modern browsers (Chrome, Firefox, Safari, Edge latest)
+- Mobile browsers (iOS Safari, Chrome Mobile)
+- Minimum iOS 12, Android 6
+- Graceful degradation for older browsers
+
+---
+
+**LAYOUT STRUCTURE:**
+
+```
+┌─────────────────────────────────┐
+│ Luimo (sticky when scrolling)   │
+│                                 │
+│ Question                        │
+│ Since you're already...         │
+│                                 │
+│ Answer to Question              │
+│ Since you're already...         │
+│                                 │
+│ Since you're already...         │
+│ full-stack application...       │
+│                                 │
+│ Advantages                      │
+│ ● Yes, I can try                │
+│ ● Not now, just keep it...      │
+│ ● Complete No                   │
+│                                 │
+│ ● Yes, I can try                │
+│ ● Not now, just keep it...      │
+│ ● Complete No                   │
+│                                 │
+│ Another Title                   │
+│ Since you're already...         │
+│                                 │
+│ Another Title                   │
+│ Since you're already...         │
+│                                 │
+│ [  Download  ]                  │
+│                                 │
+└─────────────────────────────────┘
+```
+
+---
+
+**DATA FLOW:**
+
+```
+Component Mounts
+       ↓
+Load Results Data (from props or API)
+       ↓
+Render All Sections:
+  ├─ Question
+  ├─ Answer
+  ├─ Advantages
+  ├─ Additional Sections
+  └─ Download Button
+       ↓
+User Scrolls
+  ├─ Trigger Section Animations (optional)
+  ├─ Update Logo Sticky State
+  └─ Track Scroll Position
+       ↓
+User Clicks Download
+  ├─ Validate Format
+  ├─ Set Loading State
+  ├─ Call Download API
+  ├─ Generate/Fetch File
+  ├─ Trigger Browser Download
+  ├─ Show Success Feedback (optional)
+  └─ Clear Loading State
+```
+
+---
+
+**DELIVERABLES:**
+
+- Fully functional React component for displaying research results
+- Comprehensive content display with multiple section types
+- Bullet point list rendering with proper spacing
+- Download functionality with API integration
+- Sticky navigation elements
+- Mobile-responsive design (all breakpoints)
+- Full keyboard navigation support
+- WCAG AA accessibility compliance
+- Smooth animations and transitions
+- Clean, commented, production-ready code
+- Proper TypeScript types (if using TypeScript)
+- Error handling with user feedback
+- Loading states with visual feedback
+- No console errors or warnings
+- Optimized re-renders
+- Browser download integration
+- Cross-browser compatibility
+
+---
+
+**TESTING CONSIDERATIONS:**
+
+- Unit tests for download handler
+- Integration tests for API calls
+- Accessibility tests (WAVE, axe, automated)
+- Responsive design tests (multiple screen sizes)
+- Performance tests (scroll smooth, render optimization)
+- Error scenario testing (network failures, timeouts)
+- User interaction testing (keyboard, mouse, touch)
+- File download testing (verify file generation)
+- Mobile device testing (iOS, Android)
+- Cross-browser testing (Chrome, Firefox, Safari, Edge)
+- Print preview testing
+- Content overflow and wrapping tests
+
+---
+
+**RELATED COMPONENTS:**
+
+This component likely follows from:
+- Luimo Deep Researcher (initial form)
+- Research Clarification Form (follow-up questions)
+- Research Plan Display (accepted plan)
+
+And may lead to:
+- Research history/archive view
+- Email results functionality
+- Collaborative sharing features
+- Further research cycles
+
+---
+
+**CONSIDERATIONS FOR LONG CONTENT:**
+
+**Handling Large Content:**
+- Virtual scrolling not typically needed unless 50+ sections
+- Optimize images and media if present
+- Code splitting for large components (optional)
+- Lazy load non-critical sections (optional)
+
+**Mobile Scrolling Performance:**
+- Avoid transform animations on large content
+- Use GPU-accelerated CSS properties (transform, opacity)
+- Debounce scroll events if using extensive listeners
+- Consider passive event listeners for scroll
+
+**Content Organization:**
+- Clear visual hierarchy with headers
+- Consistent spacing and padding
+- Logical section ordering
+- Option to collapse/expand sections (enhancement)
+
+**Readability on All Devices:**
+- Optimal line length (65-75 characters on mobile)
+- Proper line height for long-form content
+- Comfortable font sizes
+- Sufficient contrast ratios
+- Clear visual section breaks
+
+---
+
+**DOWNLOAD FEATURE SPECIFICATIONS:**
+
+**File Format Support:**
+- PDF: Professional, formatted, suitable for sharing/printing
+- DOCX: Editable, suitable for further customization
+- Markdown: Plain text, suitable for developers/technical users
+- JSON: Structured data for API integration
+
+**File Generation:**
+- Server-side: Generate on demand, stream to client
+- Client-side: Generate using libraries (jsPDF, docx, etc.)
+- Filename: Include research ID and timestamp
+- Example: `research_results_20240101_120000.pdf`
+
+**Download Tracking:**
+- Log which users download results
+- Track download format preferences
+- Monitor download success/failure rates
+
+---
+
+This comprehensive prompt provides all the necessary detail to convert the Luimo Research Results display into a production-quality React application with full content support, download functionality, accessibility, responsive design, and smooth user interactions.
