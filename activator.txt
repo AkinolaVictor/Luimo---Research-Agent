@@ -24,5 +24,7 @@ done start a new codebase, use the existing one and finetune it to fit this purp
 let's start building. 
 Before you write any code, show me your plan.
 
-
+I want you to add a speech-to-text to feature to the home page,
+User should be able to say something, and it appears in the textbox
+let me see your plan before starting
 
